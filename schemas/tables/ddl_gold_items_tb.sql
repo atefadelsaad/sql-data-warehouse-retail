@@ -1,0 +1,9 @@
+IF OBJECT_ID('gold.dim_sys_item','U') IS NOT NULL
+     DROP TABLE gold.dim_sys_item
+CREATE TABLE gold.dim_sys_item (
+	itemean CHAR(13) NOT NULL PRIMARY KEY,
+	arabic_name NVARCHAR(50) NOT NULL,
+  latin_name NVARCHAR(50) NOT NULL,
+  sub_group SMALLINT NOT NULL,
+  supplier INT NOT NULL,
+)
