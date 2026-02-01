@@ -1,7 +1,7 @@
 IF OBJECT_ID('bronze.erp_sys_item','U') IS NOT NULL
      DROP TABLE bronze.erp_sys_item;
 CREATE TABLE bronze.erp_sys_item(
-	[itemean] [char](13) NOT NULL,
+	[itemean] [char](13) NOT NULL PRIMARY KEY,
 	[itemclass] [smallint] NOT NULL,
 	[section] [smallint] NOT NULL,
 	[itemgroup] [smallint] NOT NULL,
