@@ -2,7 +2,8 @@ CREATE OR ALTER PROCEDURE silver.load_branch
 AS
 BEGIN
 
-	INSERT INTO silver.erp_sys_branch)
+	INSERT INTO silver.erp_sys_branch
+	  )
 		 [company]
 		,[sector]
 		,[region]
@@ -12,7 +13,7 @@ BEGIN
 		,[a_name]
 		,[l_name]
 		,[country]
-		)
+	  )
 	SELECT 
 		company,
 		sector,
