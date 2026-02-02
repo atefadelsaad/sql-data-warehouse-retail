@@ -64,5 +64,6 @@ CREATE TABLE [bronze].[erp_sys_supplier](
 	[Reserved6] [smallint] NULL,
 	[Reserved7] [datetime] NULL,
 	[Reserved8] [int] NULL,
-	[Reserved9] [int] NULL
+	[Reserved9] [int] NULL,
+	CONSTRAINT [pk_erp_sys_supplier] PRIMARY KEY NONCLUSTERED ([supplierno] ASC)
 ) 
