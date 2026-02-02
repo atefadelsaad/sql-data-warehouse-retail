@@ -2,8 +2,8 @@ CREATE OR ALTER PROCEDURE silver.load_branch
 AS
 BEGIN
 
-	INSERT INTO [silver].[erp_sys_branch]
-		([company]
+	INSERT INTO silver.erp_sys_branch)
+		 [company]
 		,[sector]
 		,[region]
 		,[branch]
