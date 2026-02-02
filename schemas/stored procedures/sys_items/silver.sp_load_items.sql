@@ -3,19 +3,19 @@ BEGIN
 	INSERT INTO silver.erp_sys_item 
 	   (
 		itemean,
-		a_name,
-		l_name,
+		arabic_name,
+		latin_name,
 		sub_group,
 		supplier 
 	    )
 	SELECT 
 	TRIM(itemean) AS itemean,
-	TRIM(a_name) AS a_name,
+	TRIM(a_name) AS arabic_name,
 	CASE
 		WHEN l_name IS NULL l_name = ''
 		THEN 'N/A'
 		ELSE l_name
-	END l_name,
+	END latin_name,
 	    department AS sub_group,
 	    producerno AS supplier
 	FROM bronze.erp_sys_item ORDER BY itemean
