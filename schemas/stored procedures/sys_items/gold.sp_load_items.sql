@@ -1,6 +1,6 @@
 CREATE OR ALTER PROCEDURE gold.load_items AS
 BEGIN
-	INSERT INTO gold.dim_sys_item
+	INSERT INTO gold.dim_item
 	   (
 		itemean,
 		arabic_name,
