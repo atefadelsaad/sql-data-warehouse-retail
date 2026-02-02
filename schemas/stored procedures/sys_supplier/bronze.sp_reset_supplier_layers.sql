@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE bronze.sp_reset_supplier_layers
+CREATE OR ALTER PROCEDURE bronze.reset_supplier_layers
 AS
 BEGIN
     TRUNCATE TABLE bronze.erp_sys_supplier
