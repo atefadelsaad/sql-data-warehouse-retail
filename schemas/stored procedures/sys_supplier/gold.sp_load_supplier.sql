@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE gold.sp_load_supplier
+CREATE OR ALTER PROCEDURE gold.load_supplier
 AS
 BEGIN
 	INSERT INTO gold.dim_supplier
