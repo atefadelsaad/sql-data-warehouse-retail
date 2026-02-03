@@ -1,7 +1,7 @@
-CREATE OR ALTER PROCEDURE gold.load_doctype
+CREATE OR ALTER PROCEDURE gold.load_documents
 AS
 BEGIN
-	INSERT INTO gold.dim_doctype
+	INSERT INTO gold.dim_documents_types
 		(
 		 [systemcode]
 		,[transtype]
@@ -17,4 +17,4 @@ BEGIN
 		,[l_name]
 	  FROM silver.erp_sys_doctype
 END
-EXEC gold.load_doctype
+EXEC gold.load_documents
