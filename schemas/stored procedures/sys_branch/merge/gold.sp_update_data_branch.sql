@@ -1,21 +1,30 @@
-MERGE gold.t_1 AS target
-USING silver.t_1 AS source
-    ON target.id = source.id
+CREATE OR ALTER PROCEDURE gold.update_branch
+AS
+BEGIN
+    SET NOCOUNT ON;
 
--- Update
-WHEN MATCHED 
-     AND ISNULL(target.name, '') <> ISNULL(source.name, '')
-THEN
-    UPDATE SET
-        target.name = source.name
+    MERGE gold.t_1 AS target
+    USING silver.t_1 AS source
+        ON target.id = source.id
 
--- Insert
-WHEN NOT MATCHED BY TARGET
-THEN
-    INSERT (id, name)
-    VALUES (source.id, source.name)
+    -- UPDATE: لو الصف موجود والاسم اتغير
+    WHEN MATCHED
+         AND ISNULL(target.name, '') <> ISNULL(source.name, '')
+    THEN
+        UPDATE SET
+            target.name = source.name
 
--- Delete
-WHEN NOT MATCHED BY SOURCE
-THEN
-    DELETE;
+    -- INSERT: صف جديد دخل من Silver
+    WHEN NOT MATCHED BY TARGET
+    THEN
+        INSERT (id, name)
+        VALUES (source.id, source.name)
+
+    -- DELETE: صف موجود في Gold واختفى من Silver
+    -- ⚠️ Silver هو Source of Truth
+    WHEN NOT MATCHED BY SOURCE
+    THEN
+        DELETE;
+
+END;
+GO
