@@ -3,16 +3,16 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    MERGE gold.t_1 AS target
-    USING silver.t_1 AS source
-        ON target.id = source.id
+    MERGE gold.dim_branch AS target
+    USING silver.erp_sys_branch AS source
+        ON target.branch = source.branch
 
     -- UPDATE: لو الصف موجود والاسم اتغير
     WHEN MATCHED
-         AND ISNULL(target.name, '') <> ISNULL(source.name, '')
+         AND ISNULL(target.branch, '') <> ISNULL(source.branch, '')
     THEN
         UPDATE SET
-            target.name = source.name
+            target.branch = source.branch
 
     -- INSERT: صف جديد دخل من Silver
     WHEN NOT MATCHED BY TARGET
