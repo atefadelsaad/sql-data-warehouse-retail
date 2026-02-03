@@ -1,7 +1,7 @@
 
-IF OBJECT_ID('gold.dim_sys_doctype','U')IS NOT NULL
-     DROP TABLE gold.dim_sys_doctypee
-CREATE TABLE gold.dim_sys_doctype(
+IF OBJECT_ID('gold.dim_documents_types','U')IS NOT NULL
+     DROP TABLE gold.dim_documents_types
+CREATE TABLE gold.dim_documents_types(
     [systemcode] [smallint] NOT NULL,
 	[transtype] [smallint] NOT NULL,
 	[doctype] [smallint] NOT NULL,
