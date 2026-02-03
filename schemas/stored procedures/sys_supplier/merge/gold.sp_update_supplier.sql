@@ -1,27 +1,25 @@
-CREATE OR ALTER PROCEDURE gold.update_branch
+CREATE OR ALTER PROCEDURE gold.update_supplier
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    MERGE gold.t_1 AS target
-    USING silver.t_1 AS source
-        ON target.id = source.id
+    MERGE gold.dim_supplier AS target
+    USING silver.erp_sys_supplier AS source
+        ON target.supplierno = source.supplierno
 
-    -- UPDATE: لو الصف موجود والاسم اتغير
     WHEN MATCHED
-         AND ISNULL(target.name, '') <> ISNULL(source.name, '')
+         AND ISNULL(target.a_name, '') <> ISNULL(source.a_name, '')
+         AND ISNULL(target.l_name, '') <> ISNULL(source.l_name, '')
     THEN
         UPDATE SET
-            target.name = source.name
+           target.a_name = source.a_name
+           target.l_name = source.l_name
 
-    -- INSERT: صف جديد دخل من Silver
     WHEN NOT MATCHED BY TARGET
     THEN
-        INSERT (id, name)
-        VALUES (source.id, source.name)
+        INSERT (supplierno,a_name,l_name)
+        VALUES (source.supplierno,source.a_name,source.l_name)
 
-    -- DELETE: صف موجود في Gold واختفى من Silver
-    -- ⚠️ Silver هو Source of Truth
     WHEN NOT MATCHED BY SOURCE
     THEN
         DELETE;
