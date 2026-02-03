@@ -3,25 +3,25 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    MERGE gold.t_1 AS target
-    USING silver.t_1 AS source
-        ON target.id = source.id
+    MERGE gold.dim_documents_types AS target
+    USING silver.erp_sys_doctype AS source
+        ON target.systemcode = source.systemcode
+        AND target.transtype = source.transtype
+        AND target.doctype = source.doctype
 
-    -- UPDATE: لو الصف موجود والاسم اتغير
     WHEN MATCHED
-         AND ISNULL(target.name, '') <> ISNULL(source.name, '')
+         AND ISNULL(target.a_name, '') <> ISNULL(source.a_name, '')
+         AND ISNULL(target.l_name, '') <> ISNULL(source.l_name, '')
     THEN
         UPDATE SET
-            target.name = source.name
+            target.a_name = target.a_name,
+            target.l_name = source.l_name
 
-    -- INSERT: صف جديد دخل من Silver
     WHEN NOT MATCHED BY TARGET
     THEN
-        INSERT (id, name)
-        VALUES (source.id, source.name)
+        INSERT (systemcode, transtype,doctype,a_name,l_name)
+        VALUES (source.systemcode,source.transtype,source.doctype,source.a_name,source.l_name)
 
-    -- DELETE: صف موجود في Gold واختفى من Silver
-    -- ⚠️ Silver هو Source of Truth
     WHEN NOT MATCHED BY SOURCE
     THEN
         DELETE;
