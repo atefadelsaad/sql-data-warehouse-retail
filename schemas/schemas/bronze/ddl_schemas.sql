@@ -1,3 +1,5 @@
+CREATE DATABASE db_Atef
+GO
 USE db_Atef
 GO
 CREATE SCHEMA bronze
