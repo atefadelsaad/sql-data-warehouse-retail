@@ -11,5 +11,6 @@ CREATE TABLE gold.dim_branch(
     a_name char(50) NOT NULL,
     l_name char(50) NOT NULL,
     country smallint NOT NULL,
+    lest_update datetime NOT NULL
     CONSTRAINT pk_erp_sys_branch PRIMARY KEY NONCLUSTERED (branch ASC)
 );
