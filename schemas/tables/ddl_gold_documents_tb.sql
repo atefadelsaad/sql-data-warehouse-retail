@@ -7,6 +7,7 @@ CREATE TABLE gold.dim_documents_types(
     doctype smallint NOT NULL,
     a_name varchar(50) NOT NULL,
     l_name varchar(50) NOT NULL,
+    last_update datetime NOT NULL,
     CONSTRAINT pk_sys_doctype PRIMARY KEY NONCLUSTERED (
         systemcode ASC,
         transtype ASC,
