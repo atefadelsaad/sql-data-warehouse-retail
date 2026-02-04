@@ -8,8 +8,6 @@ CREATE TABLE silver.erp_sys_doctype(
     a_name varchar(50) NOT NULL,
     l_name varchar(50) NOT NULL,
     CONSTRAINT pk_sys_doctype PRIMARY KEY NONCLUSTERED (
-        systemcode ASC,
-        transtype ASC,
         doctype ASC
     )
 );
