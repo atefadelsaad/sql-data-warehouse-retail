@@ -1,4 +1,3 @@
-
 CREATE OR ALTER PROCEDURE gold.load_items
 AS
 BEGIN
@@ -23,12 +22,19 @@ BEGIN
 
     WHEN NOT MATCHED BY TARGET
     THEN
-        INSERT (itemean,arabic_name, latin_name,sub_group,supplier)
-        VALUES (source.itemean,source.arabic_name,source.latin_name,source.sub_group,source.supplier)
+        INSERT (itemean,arabic_name, latin_name,sub_group,supplier,last_update)
+        VALUES (source.itemean,source.arabic_name,source.latin_name,source.sub_group,source.supplier,getdate())
 
     WHEN NOT MATCHED BY SOURCE
     THEN
-        DELETE;
+        DELETE
+		OUTPUT
+              $ACTION AS merge_action,
+              inserted.arabic_name AS inserted ,
+			  inserted.latin_name AS inserted ,
+              deleted.arabic_name AS deleted,
+              deleted.latin_name AS deleted;  
+
 
 END;
 
