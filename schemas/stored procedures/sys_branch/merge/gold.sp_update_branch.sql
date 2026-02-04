@@ -18,13 +18,13 @@ BEGIN
          AND ISNULL(target.country, '') <> ISNULL(source.country, '')
     THEN
         UPDATE SET
-            target.company = source.company
-            target.sector = source.sector
-            target.region = source.region
-            target.branchtype = source.branchtype
-            target.activity = source.activity
-            target.a_name = source.a_name
-            target.l_name = source.l_name
+            target.company = source.company,
+            target.sector = source.sector,
+            target.region = source.region,
+            target.branchtype = source.branchtype,
+            target.activity = source.activity,
+            target.a_name = source.a_name,
+            target.l_name = source.l_name,
             target.country = source.country
         
     WHEN NOT MATCHED BY TARGET
