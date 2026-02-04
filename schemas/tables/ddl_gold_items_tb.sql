@@ -6,5 +6,6 @@ CREATE TABLE gold.dim_item (
     arabic_name NVARCHAR(50) NOT NULL,
     latin_name NVARCHAR(50) NOT NULL,
     sub_group SMALLINT NOT NULL,
-    supplier INT NOT NULL
+    supplier INT NOT NULL,
+    last_update datetime NOT NULL
 );
