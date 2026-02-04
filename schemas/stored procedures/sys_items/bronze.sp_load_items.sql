@@ -12,7 +12,7 @@ BEGIN
         shortname,
         flavor,
         brand,                  
-        producerno,
+        producerrno,
         category,
         referenceno,
         color,
@@ -216,6 +216,3 @@ BEGIN
         Data
     FROM Retail.dbo.sys_item;
 END;
- 
-EXEC bronze.load_items;
-
