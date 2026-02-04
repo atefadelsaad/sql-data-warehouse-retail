@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE bronze.reset_doctype_layers
+CREATE OR ALTER PROCEDURE bronze.cleanup_documents
 AS
 BEGIN
       TRUNCATE TABLE  bronze.erp_sys_doctype
