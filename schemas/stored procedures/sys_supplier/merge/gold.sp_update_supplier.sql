@@ -12,7 +12,7 @@ BEGIN
          AND ISNULL(target.l_name, '') <> ISNULL(source.l_name, '')
     THEN
         UPDATE SET
-           target.a_name = source.a_name
+           target.a_name = source.a_name,
            target.l_name = source.l_name
 
     WHEN NOT MATCHED BY TARGET
