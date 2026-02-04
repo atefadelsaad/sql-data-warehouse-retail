@@ -1,33 +1,36 @@
-
 CREATE OR ALTER PROCEDURE gold.load_supplier
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    MERGE gold.dim_supplierAS target
+    MERGE gold.dim_supplier AS target
     USING silver.erp_sys_supplier   AS source
-        ON target.itemean = source.itemean
+        ON target.supplierno = source.supplierno
 
-    WHEN MATCHED
+    WHEN MATCHED                       
                 AND 
-                   target.arabic_name<> source.arabic_name
-                OR target.latin_name <> source.latin_name
-                OR target.sub_group <> source.sub_group
-                OR target.supplier <> source.supplier
+                   target.a_name<> source.a_name
+                OR target.l_name <> source.l_name
+               
     THEN
         UPDATE SET
-            target.arabic_name = source.arabic_name,
-            target.latin_name = source.latin_name,
-            target.sub_group = source.sub_group,
-            target.supplier = source.supplier
-
+            target.a_name = source.a_name,
+            target.l_name = source.l_name
     WHEN NOT MATCHED BY TARGET
     THEN
-        INSERT (itemean,arabic_name, latin_name,sub_group,supplier)
-        VALUES (source.itemean,source.arabic_name,source.latin_name,source.sub_group,source.supplier)
+        INSERT (supplierno,a_name, l_name,last_update)
+        VALUES (source.supplierno,source.a_name,source.l_name,getdate())
 
     WHEN NOT MATCHED BY SOURCE
     THEN
-        DELETE;
+        DELETE
+		OUTPUT
+              $ACTION AS merge_action,
+              inserted.supplierno AS inserted ,
+			  inserted.a_name AS inserted ,
+              deleted.supplierno AS deleted,
+              deleted.a_name AS deleted;  
 
 END;
+
+exec gold.load_supplier
