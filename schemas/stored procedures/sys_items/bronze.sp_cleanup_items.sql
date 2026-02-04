@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE bronze.reset_items_layers 
+CREATE OR ALTER PROCEDURE bronze.cleanup_items
 AS
 BEGIN
 	TRUNCATE TABLE bronze.erp_sys_item
