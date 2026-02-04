@@ -5,7 +5,7 @@ CREATE TABLE bronze.erp_sys_branch (
     company smallint NOT NULL,
     sector smallint NOT NULL,
     region smallint NOT NULL,
-    branch int NOT NULL,
+    branch int NOT NULL primary key,
     branchtype smallint NOT NULL,
     activity smallint NULL,
     a_name char(50) NULL,
