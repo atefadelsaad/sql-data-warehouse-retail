@@ -12,12 +12,12 @@ BEGIN
 	TRIM(itemean) AS itemean,
 	TRIM(a_name) AS arabic_name,
 	CASE
-		WHEN l_name IS NULL l_name = ''
+		WHEN l_name IS NULL OR l_name = ''
 		THEN 'N/A'
 		ELSE l_name
 	END latin_name,
 	    department AS sub_group,
-	    producerno AS supplier
+	    producerrno AS supplier
 	FROM bronze.erp_sys_item ORDER BY itemean
 END
 EXEC silver.load_items
