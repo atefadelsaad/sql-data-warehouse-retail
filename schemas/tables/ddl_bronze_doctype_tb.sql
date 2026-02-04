@@ -20,8 +20,6 @@ CREATE TABLE bronze.erp_sys_doctype (
     status smallint NULL,
     currency smallint NULL,
     CONSTRAINT pk_sys_doctype PRIMARY KEY NONCLUSTERED (
-        systemcode ASC,
-        transtype ASC,
         doctype ASC
     )
 );
