@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE bronze.reset_branch_layers
+CREATE OR ALTER PROCEDURE bronze.cleanup_branch
 AS
 BEGIN
 	  TRUNCATE TABLE bronze.erp_sys_branch
