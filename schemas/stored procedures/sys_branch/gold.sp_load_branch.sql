@@ -1,3 +1,4 @@
+
 CREATE OR ALTER PROCEDURE gold.load_branch
 AS
 BEGIN
@@ -30,12 +31,16 @@ BEGIN
         
     WHEN NOT MATCHED BY TARGET
     THEN
-        INSERT (company, sector,region,branch,branchtype,activity,a_name,l_name,country)
-        VALUES (source.company, source.sector,source.region,source.branch,source.branchtype,source.activity,source.a_name,source.l_name,source.country)
-
+        INSERT (company, sector,region,branch,branchtype,activity,a_name,l_name,country,last_update)
+        VALUES (source.company, source.sector,source.region,source.branch,source.branchtype,source.activity,source.a_name,source.l_name,source.country,getdate())
     WHEN NOT MATCHED BY SOURCE
     THEN
-        DELETE;
+        DELETE
+		 
+        OUTPUT
+               $ACTION AS merge_action,
+               inserted.branch AS inserted ,
+               deleted.branch AS deleted;
 
 END;
 GO
