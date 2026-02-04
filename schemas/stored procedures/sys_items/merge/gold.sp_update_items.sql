@@ -15,9 +15,9 @@ BEGIN
          AND ISNULL(target.supplier, '') <> ISNULL(source.supplier, '')
     THEN
         UPDATE SET
-            target.arabic_name = source.arabic_name
-            target.latin_name = source.latin_name
-            target.sub_group = source.sub_group
+            target.arabic_name = source.arabic_name,
+            target.latin_name = source.latin_name,
+            target.sub_group = source.sub_group,
             target.supplier = source.supplier
 
     WHEN NOT MATCHED BY TARGET
