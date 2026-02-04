@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE gold.update_branch
+CREATE OR ALTER PROCEDURE gold.load_branch
 AS
 BEGIN
     SET NOCOUNT ON;
