@@ -9,8 +9,6 @@ CREATE TABLE gold.dim_documents_types(
     l_name varchar(50) NOT NULL,
     last_update datetime NOT NULL,
     CONSTRAINT pk_sys_doctype PRIMARY KEY NONCLUSTERED (
-        systemcode ASC,
-        transtype ASC,
         doctype ASC
     )
 );
