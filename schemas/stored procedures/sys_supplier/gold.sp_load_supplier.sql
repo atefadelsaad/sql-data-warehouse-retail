@@ -9,17 +9,18 @@ BEGIN
 
     WHEN MATCHED                       
                 AND 
-                   target.a_name<> source.a_name
-                OR target.l_name <> source.l_name
+                   target.arabic_name<> source.arabic_name
+                OR target.latin_name <> source.latin_name
                
     THEN
         UPDATE SET
-            target.a_name = source.a_name,
-            target.l_name = source.l_name
+            target.arabic_name = source.arabic_name,
+            target.latin_name = source.latin_name,
+		    last_update = getdate()
     WHEN NOT MATCHED BY TARGET
     THEN
-        INSERT (supplierno,a_name, l_name,last_update)
-        VALUES (source.supplierno,source.a_name,source.l_name,getdate())
+        INSERT (supplierno,arabic_name, latin_name,last_update)
+        VALUES (source.supplierno,source.arabic_name,source.latin_name,getdate())
 
     WHEN NOT MATCHED BY SOURCE
     THEN
@@ -27,9 +28,9 @@ BEGIN
 		OUTPUT
               $ACTION AS merge_action,
               inserted.supplierno AS inserted ,
-			  inserted.a_name AS inserted ,
+			  inserted.arabic_name AS inserted ,
               deleted.supplierno AS deleted,
-              deleted.a_name AS deleted;  
+              deleted.arabic_name AS deleted;  
 
 END;
 
