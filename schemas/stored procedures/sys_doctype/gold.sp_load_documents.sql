@@ -10,17 +10,17 @@ BEGIN
 
     WHEN MATCHED
                 AND 
-                   target.arabic_name <> source.a_name
-                OR target.latin_name <> source.l_name
+                   target.arabic_name <> source.arabic_name
+                OR target.latin_name <> source.latin_name
     THEN
         UPDATE SET
-            target.arabic_name = source.a_name,
-            target.latin_name = source.l_name,
+            target.arabic_name = source.arabic_name,
+            target.latin_name = source.latin_name,
 			target.last_update = getdate()
     WHEN NOT MATCHED BY TARGET
     THEN
         INSERT (doctype,arabic_name,latin_name,last_update)
-        VALUES (source.doctype,source.a_name,source.l_name,getdate())
+        VALUES (source.doctype,source.arabic_name,source.latin_name,getdate())
 
     WHEN NOT MATCHED BY SOURCE
     THEN
