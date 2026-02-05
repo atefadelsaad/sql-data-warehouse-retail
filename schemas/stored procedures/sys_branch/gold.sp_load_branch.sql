@@ -1,28 +1,26 @@
-
 CREATE OR ALTER PROCEDURE gold.load_branch
 AS
 BEGIN
-    SET NOCOUNT ON;
 
     MERGE gold.dim_branch AS target
     USING silver.erp_sys_branch AS source
         ON target.branch = source.branch
 
     WHEN MATCHED
-               AND (
+               AND 
 		          target.arabic_name <> source.arabic_name
                   or target.latin_name  <> source.latin_name
                   or target.branch_type <> source.branch_type
-                   )
+                   
     THEN
         UPDATE SET
             target.arabic_name = source.arabic_name,
             target.latin_name = source.latin_name,
             target.branch_type = source.branch_type,
-            target.last_update = getdate()
+            target.lest_update = getdate()
     WHEN NOT MATCHED BY TARGET
     THEN
-        INSERT (branch,arabic_name,latin_name,branch_type,last_update)
+        INSERT (branch,arabic_name,latin_name,branch_type,lest_update)
         VALUES (source.branch, source.arabic_name, source.latin_name, source.branch_type, GETDATE())
     WHEN NOT MATCHED BY SOURCE
     THEN
@@ -34,4 +32,3 @@ BEGIN
                deleted.branch AS deleted;
 
 END;
-GO
