@@ -7,10 +7,10 @@ BEGIN
         latin_name,
         branch_type
     )
-    SELECT     
+    SELECT distinct    
         branch,
-        ISNULL(TRIM(a_name),0) AS a_name,
-        ISNULL(TRIM(l_name),0) AS l_name,     
+        ISNULL(TRIM(a_name),'N/A') AS arabic_name,
+        ISNULL(TRIM(l_name),'N/A') AS latin_name,     
         branchtype
     FROM bronze.erp_sys_branch
 	where branch > 1
