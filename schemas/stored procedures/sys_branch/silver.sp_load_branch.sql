@@ -2,26 +2,16 @@ CREATE OR ALTER PROCEDURE silver.load_branch
 AS
 BEGIN
     INSERT INTO silver.erp_sys_branch (
-        company,
-        sector,
-        region,
         branch,
         branchtype,
-        activity,
         a_name,
         l_name,
-        country
     )
-    SELECT 
-        company,
-        sector,
-        region,
+    SELECT     
         branch,
         branchtype,
-        ISNULL(activity, 0) AS activity,
-        TRIM(a_name) AS a_name,
-        TRIM(l_name) AS l_name,
-        ISNULL(country, 0) AS country
+        ISNULL(TRIM(a_name),0) AS a_name,
+        ISNULL(TRIM(l_name),0) AS l_name,     
     FROM bronze.erp_sys_branch;
 END;
 
