@@ -10,20 +10,20 @@ BEGIN
 
     WHEN MATCHED
                AND (
-		          target.arabic_name <> source.a_name
-                  or target.latin_name  <> source.l_name
-                  or target.branch_type <> source.branchtype
+		          target.arabic_name <> source.arabic_name
+                  or target.latin_name  <> source.latin_name
+                  or target.branch_type <> source.branch_type
                    )
     THEN
         UPDATE SET
-            target.arabic_name = source.a_name,
-            target.latin_name = source.l_name,
-            target.branch_type = source.branchtype,
+            target.arabic_name = source.arabic_name,
+            target.latin_name = source.latin_name,
+            target.branch_type = source.branch_type,
             target.last_update = getdate()
     WHEN NOT MATCHED BY TARGET
     THEN
         INSERT (branch,arabic_name,latin_name,branch_type,last_update)
-        VALUES (source.branch, source.a_name, source.l_name, source.branchtype, GETDATE())
+        VALUES (source.branch, source.arabic_name, source.latin_name, source.branch_type, GETDATE())
     WHEN NOT MATCHED BY SOURCE
     THEN
         DELETE
