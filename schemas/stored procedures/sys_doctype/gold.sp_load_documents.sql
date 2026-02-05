@@ -10,19 +10,17 @@ BEGIN
 
     WHEN MATCHED
                 AND 
-                   target.a_name <> source.a_name
-                OR target.l_name <> source.l_name
+                   target.arabic_name <> source.a_name
+                OR target.latin_name <> source.l_name
     THEN
         UPDATE SET
-            target.a_name = target.a_name,
-            target.l_name = source.l_name,
-			target.systemcode = source.systemcode,
-            target.transtype = source.transtype
-
+            target.arabic_name = source.a_name,
+            target.latin_name = source.l_name,
+			target.last_update = getdate()
     WHEN NOT MATCHED BY TARGET
     THEN
-        INSERT (systemcode, transtype,doctype,a_name,l_name,last_update)
-        VALUES (source.systemcode,source.transtype,source.doctype,source.a_name,source.l_name,getdate())
+        INSERT (doctype,arabic_name,latin_name,last_update)
+        VALUES (source.doctype,source.a_name,source.l_name,getdate())
 
     WHEN NOT MATCHED BY SOURCE
     THEN
@@ -30,9 +28,8 @@ BEGIN
 
         OUTPUT
         $ACTION AS merge_action,
-        inserted.a_name AS inserted ,
-        deleted.a_name AS deleted;
+        inserted.arabic_name AS inserted ,
+        deleted.arabic_name AS deleted;
 
 END;
 GO
-exec gold.load_documents
