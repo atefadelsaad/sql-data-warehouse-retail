@@ -12,7 +12,6 @@ BEGIN
         ISNULL(TRIM(a_name),0) AS a_name,
         ISNULL(TRIM(l_name),0) AS l_name,     
         branchtype
-    FROM bronze.erp_sys_branch;
+    FROM bronze.erp_sys_branch
+	where branch > 1
 END;
-
-EXEC silver.load_branch;
