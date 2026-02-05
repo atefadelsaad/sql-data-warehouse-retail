@@ -4,7 +4,7 @@ IF OBJECT_ID('silver.erp_sys_branch','U') IS NOT NULL
 CREATE TABLE silver.erp_sys_branch(
     branch int NOT NULL,
     branchtype smallint NOT NULL,
-    a_name char(50) NOT NULL,
-    l_name char(50) NOT NULL,
+    arabic_name char(50) NOT NULL,
+    latin_name char(50) NOT NULL,
     CONSTRAINT pk_erp_sys_branch PRIMARY KEY NONCLUSTERED (branch ASC)
 );
