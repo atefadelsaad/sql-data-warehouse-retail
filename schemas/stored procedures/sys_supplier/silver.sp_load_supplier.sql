@@ -3,8 +3,8 @@ AS
 BEGIN
 	INSERT INTO silver.erp_sys_supplier(
 		supplierno,
-		a_name,
-		l_name
+		arabic_name,
+		latin_name
 	)
 	SELECT 
 		supplierno,
