@@ -3,9 +3,9 @@ AS
 BEGIN
     INSERT INTO silver.erp_sys_branch (
         branch,
-        a_name,
-        l_name,
-        branchtype
+        arabic_name,
+        latin_name,
+        branch_type
     )
     SELECT     
         branch,
