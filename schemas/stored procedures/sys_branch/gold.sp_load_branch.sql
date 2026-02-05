@@ -16,9 +16,9 @@ BEGIN
       
     THEN
         UPDATE SET
-            target.branchtype = source.branchtype,
-            target.a_name = source.a_name,
-            target.l_name = source.l_name,
+            target.arbic_name = source.arbic_name,
+            target.latin_name = source.latin_name,
+            target.branch_type = source.branch_type,
             target.last_update = getdate()
     WHEN NOT MATCHED BY TARGET
     THEN
