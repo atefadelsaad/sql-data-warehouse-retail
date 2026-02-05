@@ -2,15 +2,11 @@ CREATE OR ALTER PROCEDURE silver.load_doctype
 AS
 BEGIN
 INSERT INTO silver.erp_sys_doctype (
-    systemcode,
-    transtype,
     doctype,
     a_name,
     l_name
 )
 SELECT 
-    systemcode,
-    transtype,
     doctype,
     a_name,
     CASE 
@@ -23,15 +19,11 @@ WHERE
 
 
 INSERT INTO silver.erp_sys_doctype (
-    systemcode,
-    transtype,
     doctype,
     a_name,
     l_name
 )
 SELECT 
-    systemcode,
-    transtype,
     doctype,
     a_name,
     CASE 
