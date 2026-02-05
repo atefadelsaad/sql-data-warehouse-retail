@@ -3,8 +3,8 @@ AS
 BEGIN
 INSERT INTO silver.erp_sys_doctype (
     doctype,
-    a_name,
-    l_name
+    arabic_name,
+    latin_name
 )
 SELECT 
     doctype,
@@ -20,8 +20,8 @@ WHERE
 
 INSERT INTO silver.erp_sys_doctype (
     doctype,
-    a_name,
-    l_name
+    arabic_name,
+    latin_name
 )
 SELECT 
     doctype,
