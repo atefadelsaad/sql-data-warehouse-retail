@@ -3,15 +3,15 @@ AS
 BEGIN
     INSERT INTO silver.erp_sys_branch (
         branch,
-        branchtype,
         a_name,
         l_name,
+        branchtype
     )
     SELECT     
         branch,
-        branchtype,
         ISNULL(TRIM(a_name),0) AS a_name,
         ISNULL(TRIM(l_name),0) AS l_name,     
+        branchtype
     FROM bronze.erp_sys_branch;
 END;
 
