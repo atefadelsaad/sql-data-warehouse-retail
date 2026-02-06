@@ -1,7 +1,6 @@
 CREATE OR ALTER PROCEDURE gold.load_documents
 AS
 BEGIN
-    SET NOCOUNT ON;
 
     MERGE gold.dim_documents_types AS target
     USING silver.erp_sys_doctype AS source
