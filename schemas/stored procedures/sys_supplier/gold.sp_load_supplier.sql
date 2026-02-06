@@ -1,7 +1,6 @@
 CREATE OR ALTER PROCEDURE gold.load_supplier
 AS
 BEGIN
-    SET NOCOUNT ON;
 
     MERGE gold.dim_supplier AS target
     USING silver.erp_sys_supplier   AS source
