@@ -9,8 +9,8 @@ BEGIN
     WHEN MATCHED
                AND 
 		          target.arabic_name <> source.arabic_name
-                  or target.latin_name  <> source.latin_name
-                  or target.branch_type <> source.branch_type
+                  OR target.latin_name  <> source.latin_name
+                  OR target.branch_type <> source.branch_type
                    
     THEN
         UPDATE SET
