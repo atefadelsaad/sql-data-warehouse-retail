@@ -1,7 +1,6 @@
 CREATE OR ALTER PROCEDURE gold.load_items
 AS
 BEGIN
-    SET NOCOUNT ON;
 
     MERGE gold.dim_item AS target
     USING silver.erp_sys_item   AS source
