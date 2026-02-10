@@ -33,4 +33,4 @@ BEGIN
 
 END;
 
-exec gold.load_supplier
+EXEC gold.load_supplier
