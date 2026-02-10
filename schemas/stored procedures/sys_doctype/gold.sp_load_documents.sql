@@ -31,4 +31,4 @@ BEGIN
         deleted.arabic_name AS deleted;
 
 END;
-GO
+
